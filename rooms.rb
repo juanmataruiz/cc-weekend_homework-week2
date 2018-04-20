@@ -1,9 +1,9 @@
 class Rooms
 
-  attr_reader(:name, :guests, :songs)
-  attr_accessor(:till, :capacity, :fee)
+  attr_reader(:name, :guests, :songs, :till)
+  attr_accessor( :capacity, :fee)
 
-  def initialize(name, capacity)
+  def initialize(name, capacity, till, fee)
     @name = name
     @guests = []
     @songs = []
@@ -36,6 +36,14 @@ class Rooms
     return count_guests >= @capacity
     # return "Room is full" if @guests.count == @capacity
     # return "This is not full yet" if @guests.count < @capacity
+  end
+
+  def add_cash()
+    @till += @fee
+  end
+
+  def remove_cash()
+    @till -= @fee
   end
 
 

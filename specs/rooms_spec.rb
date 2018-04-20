@@ -9,13 +9,13 @@ class RoomsTest < Minitest::Test
 
   def setup
 
-    @room1 = Rooms.new("Poplar", 3)
-    @room2 = Rooms.new("Camden", 3)
-    @room3 = Rooms.new("Chelsea", 5)
+    @room1 = Rooms.new("Poplar", 3, 100, 20)
+    @room2 = Rooms.new("Camden", 3, 100, 20)
+    @room3 = Rooms.new("Chelsea", 5, 100, 20)
 
-    @guest1 = Guests.new('Mara')
-    @guest2 = Guests.new("Alex")
-    @guest3 = Guests.new("Marco")
+    @guest1 = Guests.new('Mara', 50)
+    @guest2 = Guests.new("Alex", 50)
+    @guest3 = Guests.new("Marco", 50)
 
     @song1 = Songs.new("Durmiendo sola", "Vanesa Martin")
     @song2 = Songs.new("Macarena", "Los del Rios")
@@ -70,13 +70,25 @@ class RoomsTest < Minitest::Test
   end
 
   def test_cannot_check_in_guest_if_room_is_full
-    new_guest = Guests.new("Jack")
+    new_guest = Guests.new("Jack",20)
     @room2.check_in_guests(@guest1)
     @room2.check_in_guests(@guest2)
     @room2.check_in_guests(@guest3)
     @room2.check_in_guests(new_guest)
     assert_equal(3, @room2.count_guests)
     assert_equal(true, @room2.room_full())
+  end
+
+  def test_initial_till_amount
+    assert_equal(100, @room1.till)
+  end
+
+  def test_add_or_remove_cash_from_till__add
+    assert_equal(120, @room1.add_cash())
+  end
+
+  def test_add_or_remove_cash_from_till__remove
+    assert_equal(80, @room1.remove_cash())
   end
 
 end
