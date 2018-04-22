@@ -46,5 +46,9 @@ class Rooms
     @till -= @fee
   end
 
+  def favourite_song(song)
+    @songs.each { |fab| fab == song}
+    return "Whoo! We have your favourite song."
+  end
 
 end

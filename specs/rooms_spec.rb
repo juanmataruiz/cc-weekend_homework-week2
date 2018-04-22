@@ -91,4 +91,9 @@ class RoomsTest < Minitest::Test
     assert_equal(80, @room1.remove_cash())
   end
 
+  def test_room_has_favourite_song
+    result = @room1.favourite_song(@song2)
+    assert_equal("Whoo! We have your favourite song.", result)
+  end
+
 end
