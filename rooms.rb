@@ -47,7 +47,7 @@ class Rooms
   end
 
   def favourite_song(song)
-    @songs.each { |fab| fab == song}
+    @songs.each { |fav| fav == song}
     return "Whoo! We have your favourite song."
   end
 
